@@ -1,0 +1,213 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.0548,
+          15.8268
+        ]
+      },
+      "properties": {
+        "ID": 1008,
+        "GlideNumber": "0",
+        "Country": "Senegal",
+        "OtherCountry": "0",
+        "long": -15.0548,
+        "lat": 15.8268,
+        "Area": 47808.22,
+        "Began": "1995-09-24",
+        "Ended": "1995-10-08",
+        "Validation": "News",
+        "Dead": 0,
+        "Displaced": 0,
+        "MainCause": "Heavy rain",
+        "Severity": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -14.6405,
+          15.5553
+        ]
+      },
+      "properties": {
+        "ID": 1866,
+        "GlideNumber": "0",
+        "Country": "Senegal",
+        "OtherCountry": "0",
+        "long": -14.6405,
+        "lat": 15.5553,
+        "Area": 62705.79,
+        "Began": "2002-01-09",
+        "Ended": "2002-01-12",
+        "Validation": "News",
+        "Dead": 28,
+        "Displaced": 80000,
+        "MainCause": "Heavy rain",
+        "Severity": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -12.9402,
+          15.9392
+        ]
+      },
+      "properties": {
+        "ID": 2316,
+        "GlideNumber": "0",
+        "Country": "Senegal",
+        "OtherCountry": "Mauritania",
+        "long": -12.9402,
+        "lat": 15.9392,
+        "Area": 586302.53,
+        "Began": "2003-08-09",
+        "Ended": "2003-11-05",
+        "Validation": "News",
+        "Dead": 10,
+        "Displaced": 5300,
+        "MainCause": "Heavy rain",
+        "Severity": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.3737,
+          14.7558
+        ]
+      },
+      "properties": {
+        "ID": 2729,
+        "GlideNumber": "0",
+        "Country": "Senegal",
+        "OtherCountry": "0",
+        "long": -17.3737,
+        "lat": 14.7558,
+        "Area": 333.207,
+        "Began": "2005-08-20",
+        "Ended": "2005-09-10",
+        "Validation": "News",
+        "Dead": 0,
+        "Displaced": 5600,
+        "MainCause": "Heavy rain",
+        "Severity": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -13.9678,
+          15.4745
+        ]
+      },
+      "properties": {
+        "ID": 3180,
+        "GlideNumber": "FL-2007-000131-SEN",
+        "Country": "Senegal",
+        "OtherCountry": NaN,
+        "long": -13.9678,
+        "lat": 15.4745,
+        "Area": 167997.63,
+        "Began": "2007-08-31",
+        "Ended": "2007-09-20",
+        "Validation": "News",
+        "Dead": 1,
+        "Displaced": 0,
+        "MainCause": "Heavy rain",
+        "Severity": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8108,
+          14.5762
+        ]
+      },
+      "properties": {
+        "ID": 3531,
+        "GlideNumber": "FL-2009-000164-SEN",
+        "Country": "Senegal",
+        "OtherCountry": "0",
+        "long": -16.8108,
+        "lat": 14.5762,
+        "Area": 8510.69,
+        "Began": "2009-08-24",
+        "Ended": "2009-08-26",
+        "Validation": "0",
+        "Dead": 0,
+        "Displaced": 0,
+        "MainCause": "Heavy Rain",
+        "Severity": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.4943,
+          14.462
+        ]
+      },
+      "properties": {
+        "ID": 3971,
+        "GlideNumber": NaN,
+        "Country": "Senegal",
+        "OtherCountry": NaN,
+        "long": -15.4943,
+        "lat": 14.462,
+        "Area": 79242.7,
+        "Began": "2012-08-24",
+        "Ended": "2012-08-29",
+        "Validation": "News",
+        "Dead": 4,
+        "Displaced": 1200,
+        "MainCause": "Torrential Rain",
+        "Severity": 1.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -15.5163,
+          15.5202
+        ]
+      },
+      "properties": {
+        "ID": 4808,
+        "GlideNumber": NaN,
+        "Country": "Senegal",
+        "OtherCountry": NaN,
+        "long": -15.5163,
+        "lat": 15.5202,
+        "Area": 60942.37,
+        "Began": "2019-09-10",
+        "Ended": "2019-09-20",
+        "Validation": "FloodList",
+        "Dead": 0,
+        "Displaced": 4500,
+        "MainCause": "Heavy Rain",
+        "Severity": 1.0
+      }
+    }
+  ]
+}
