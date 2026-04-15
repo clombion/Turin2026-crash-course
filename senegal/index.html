@@ -3,25 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historical Flood Events in Senegal</title>
+    <title>Senegal Health Risk Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body { margin: 0; padding: 0; font-family: sans-serif; }
-        #map { height: 100vh; width: 100vw; }
-        .legend {
-            padding: 10px;
-            background: white;
-            line-height: 1.5;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        :root {
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --danger: #ff4d4d;
+            --safe: #2ecc71;
+            --flood: #3498db;
         }
-        .legend i {
-            width: 15px;
-            height: 15px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.8;
+        
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        #map { height: 100vh; width: 100vw; background: #242424; }
+
+        /* Modern Glassmorphism UI */
+        .leaflet-control-layers, .legend {
+            background: var(--panel-bg) !important;
+            backdrop-filter: blur(10px);
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15) !important;
+            padding: 12px !important;
+        }
+
+        .legend h4 { margin: 0 0 8px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #444; }
+        .legend-item { display: flex; align-items: center; margin-bottom: 5px; font-size: 13px; color: #555; }
+        .legend-color { width: 14px; height: 14px; border-radius: 50%; margin-right: 8px; border: 1px solid rgba(0,0,0,0.1); }
+
+        /* Pulsing Animation for At-Risk Sites */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .at-risk-pulse {
+            background: var(--danger);
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 10px var(--danger);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* Card-style Popups */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 5px;
+        }
+        .popup-card h3 { margin: 0 0 5px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .popup-card p { margin: 4px 0; font-size: 13px; color: #666; }
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 5px;
         }
     </style>
 </head>

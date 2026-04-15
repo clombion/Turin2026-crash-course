@@ -1,66 +1,71 @@
-// Initialize the map centered on Senegal
-const map = L.map('map').setView([14.4974, -14.4524], 7);
+// 1. Initialize the map centered on Senegal
+const map = L.map('map', {
+    zoomControl: false // Move zoom for a cleaner look
+}).setView([14.4974, -14.4524], 7);
 
-// 1. Base Map Layer
-const lightMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 20
+// 2. Beautiful Basemap Options
+const darkMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
 }).addTo(map);
 
-// 2. Create Layer Groups (Containers for our data)
+const lightMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
+});
+
+const satelliteMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri'
+});
+
+// 3. Layer Containers
 const floodLayer = L.layerGroup().addTo(map);
 const allHealthLayer = L.layerGroup();
-const atRiskLayer = L.layerGroup().addTo(map); // Show at-risk by default
+const atRiskLayer = L.layerGroup().addTo(map);
 
-// 3. Load Flood Data
+// 4. Custom Styling & Logic for Floods
 fetch('senegal_floods.json')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
         L.geoJSON(data, {
             pointToLayer: (feature, latlng) => {
-                let color = "#3388ff"; 
-                if (feature.properties.Severity == 2) color = "#ff9900";
-                if (feature.properties.Severity == 3) color = "#ff0000";
+                const color = feature.properties.Severity == 3 ? "#ff4d4d" : "#3498db";
                 return L.circleMarker(latlng, {
-                    radius: 8, fillColor: color, color: "#fff", weight: 2, fillOpacity: 0.9
+                    radius: 9, fillColor: color, color: "#fff", weight: 2, fillOpacity: 0.7
                 });
             },
             onEachFeature: (feature, layer) => {
                 const p = feature.properties;
-                layer.bindPopup(`<b>Flood Event</b><br>Date: ${p.Began}<br>Severity: ${p.Severity}`);
+                layer.bindPopup(`<div class="popup-card"><h3>Flood Event</h3><p><b>Date:</b> ${p.Began}</p><p><b>Cause:</b> ${p.MainCause}</p></div>`);
             }
         }).addTo(floodLayer);
     });
 
-// 4. Load All Health Sites
+// 5. All Health Sites - Minimalist Look
 fetch('health_sites.json')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
         L.geoJSON(data, {
             pointToLayer: (feature, latlng) => {
                 return L.circleMarker(latlng, {
-                    radius: 3, fillColor: "#28a745", color: "#fff", weight: 1, fillOpacity: 0.6
+                    radius: 2, fillColor: "#2ecc71", color: "transparent", fillOpacity: 0.5
                 });
             },
             onEachFeature: (feature, layer) => {
                 const p = feature.properties;
-                layer.bindPopup(`<b>${p.name || 'Health Site'}</b><br>Type: ${p.amenity || 'N/A'}`);
+                layer.bindPopup(`<div class="popup-card"><h3>${p.name || 'Site'}</h3><p>Type: ${p.amenity}</p></div>`);
             }
         }).addTo(allHealthLayer);
     });
 
-// 5. Load At-Risk Health Sites
+// 6. At-Risk Sites - ANIMATED PULSE
 fetch('at_risk_health_sites.json')
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
         L.geoJSON(data, {
             pointToLayer: (feature, latlng) => {
-                // Choice: Red squares for high-risk sites
                 return L.marker(latlng, {
                     icon: L.divIcon({
-                        className: 'at-risk-icon',
-                        html: '<div style="background-color: #d9534f; width: 12px; height: 12px; border: 2px solid white; border-radius: 2px;"></div>',
+                        className: 'at-risk-pulse-wrapper',
+                        html: '<div class="at-risk-pulse"></div>',
                         iconSize: [12, 12]
                     })
                 });
@@ -68,34 +73,44 @@ fetch('at_risk_health_sites.json')
             onEachFeature: (feature, layer) => {
                 const p = feature.properties;
                 layer.bindPopup(`
-                    <div style="color: #d9534f;">
-                        <strong>⚠️ AT RISK OF FLOODING</strong><br>
-                        <b>Name:</b> ${p.name || 'Unnamed Site'}<br>
-                        <b>Type:</b> ${p.amenity || 'N/A'}<br>
-                        <b>Proximity:</b> ${p.distance_to_flood_km} km to nearest flood
+                    <div class="popup-card">
+                        <h3>Vulnerable Site</h3>
+                        <p><b>Name:</b> ${p.name || 'Unnamed Clinic'}</p>
+                        <p><b>Type:</b> ${p.amenity}</p>
+                        <span class="status-badge" style="background: #ff4d4d; color: white;">🚨 Risk Alert</span>
+                        <p style="margin-top: 5px;">Only ${p.distance_to_flood_km}km from flood center.</p>
                     </div>
                 `);
             }
         }).addTo(atRiskLayer);
     });
 
-// 6. Add the Filter Control (Top Right)
-const overlayMaps = {
-    "🌊 Historical Floods": floodLayer,
-    "🏥 All Health Sites": allHealthLayer,
-    "⚠️ At-Risk Health Sites": atRiskLayer
+// 7. Modern UI Controls
+const baseMaps = {
+    "🌙 Dark Mode": darkMap,
+    "☀️ Light Mode": lightMap,
+    "🌍 Satellite": satelliteMap
 };
 
-L.control.layers(null, overlayMaps, { collapsed: false }).addTo(map);
+const overlayMaps = {
+    "🌊 Floods": floodLayer,
+    "🏥 All Sites": allHealthLayer,
+    "⚠️ At-Risk": atRiskLayer
+};
 
-// 7. Add Legend
+L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+// 8. Custom Legend
 const legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
     const div = L.DomUtil.create('div', 'legend');
-    div.innerHTML += '<h4>Map Legend</h4>';
-    div.innerHTML += '<i style="background: #3388ff"></i> Flood Event<br>';
-    div.innerHTML += '<i style="background: #28a745; width: 10px; height: 10px;"></i> Health Site (All)<br>';
-    div.innerHTML += '<i style="background: #d9534f; width: 10px; height: 10px; border-radius: 0;"></i> At-Risk Site (< 1km)<br>';
+    div.innerHTML = `
+        <h4>Map Legend</h4>
+        <div class="legend-item"><div class="legend-color" style="background: #3498db"></div> Flood Area</div>
+        <div class="legend-item"><div class="legend-color" style="background: #2ecc71"></div> Health Site</div>
+        <div class="legend-item"><div class="legend-color" style="background: #ff4d4d"></div> At Risk (Pulsing)</div>
+    `;
     return div;
 };
 legend.addTo(map);
