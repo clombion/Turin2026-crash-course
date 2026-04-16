@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Flood Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Global Flood Dashboard</h1>
+        <p>Visualizing Global Flood Events since 1985</p>
+    </header>
+    <main>
+        <div class="grid">
+            <div class="card">
+                <h3>Top 20 Countries by Flood Events</h3>
+                <div class="chart-container">
+                    <canvas id="chart-countries"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Flood Events per Year</h3>
+                <div class="chart-container">
+                    <canvas id="chart-years"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Events by Category</h3>
+                <div class="chart-container">
+                    <canvas id="chart-categories"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Total Displaced by Severity</h3>
+                <div class="chart-container">
+                    <canvas id="chart-severity"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
