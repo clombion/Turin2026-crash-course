@@ -694,17 +694,29 @@
     const recordsList = document.getElementById('recordsList');
 
     // Coordinate column detection
-    const LAT_COLUMNS = ['lat', 'latitude', 'anonymous_lat', 'y', 'lat_y'];
-    const LONG_COLUMNS = ['long', 'lng', 'longitude', 'anonymous_long', 'x', 'lon', 'long_x'];
+    const LAT_COLUMNS = ['lat', 'latitude', 'anonymous_lat', 'lat_y'];
+    const LONG_COLUMNS = ['long', 'lng', 'longitude', 'anonymous_long', 'lon', 'long_x'];
 
     function findCoordinateColumns(row) {
-      const keys = Object.keys(row).map(k => k.toLowerCase());
+      const keys = Object.keys(row);
       let latCol = null, longCol = null;
 
-      for (const key of Object.keys(row)) {
-        const lowerKey = key.toLowerCase();
-        if (!latCol && LAT_COLUMNS.some(c => lowerKey.includes(c))) latCol = key;
-        if (!longCol && LONG_COLUMNS.some(c => lowerKey.includes(c))) longCol = key;
+      // 1. Try exact/predefined matches first
+      for (const key of keys) {
+        const lk = key.toLowerCase();
+        if (!latCol && LAT_COLUMNS.includes(lk)) latCol = key;
+        if (!longCol && LONG_COLUMNS.includes(lk)) longCol = key;
+      }
+
+      // 2. Try partial matches if still not found, but avoid common false positives like 'country'
+      if (!latCol || !longCol) {
+        for (const key of keys) {
+          const lk = key.toLowerCase();
+          if (lk === 'country' || lk === 'id') continue;
+          
+          if (!latCol && (lk.includes('lat') || lk === 'y')) latCol = key;
+          if (!longCol && (lk.includes('long') || lk.includes('lng') || lk === 'x')) longCol = key;
+        }
       }
 
       return { latCol, longCol };
@@ -712,7 +724,10 @@
 
     function parseNumber(val) {
       if (typeof val === 'number') return val;
-      if (typeof val === 'string') return parseFloat(val.replace(/,/g, ''));
+      if (typeof val === 'string') {
+        const parsed = parseFloat(val.replace(/,/g, ''));
+        return isNaN(parsed) ? 0 : parsed;
+      }
       return 0;
     }
 
@@ -739,11 +754,11 @@
         _dead: parseNumber(row.Dead || row.dead || row.deaths || 0),
         _displaced: parseNumber(row.Displaced || row.displaced || 0),
         _country: row.Country || row.country || 'Unknown',
-        _cause: row.MainCause || row.mainCause || row.Cause || row.cause || row.categorised_cause || 'Unknown'
+        _cause: row.MainCause || row.mainCause || row.Cause || row.cause || row.categorised_cause || row.categorised_reason || 'Unknown'
       })).filter(row => !isNaN(row._lat) && !isNaN(row._long));
 
       if (data.length === 0) {
-        alert('No valid coordinate data found');
+        alert('No valid coordinate data found. Check that your lat/long columns contain numbers.');
         return;
       }
 
@@ -887,6 +902,7 @@
 
     // Update markers
     function updateMarkers() {
+      if (!map) return;
       markers.forEach(m => m.remove());
       markers = [];
 
@@ -920,7 +936,7 @@
 
     // Fit map bounds
     function fitMapBounds() {
-      if (filteredData.length === 0) return;
+      if (!map || filteredData.length === 0) return;
 
       const bounds = L.latLngBounds(filteredData.map(d => [d._lat, d._long]));
       map.fitBounds(bounds, { padding: [50, 50] });
