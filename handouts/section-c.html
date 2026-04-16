@@ -314,6 +314,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   flex: 1;
+  margin-bottom: 24px;
 }
 
 .column-header {
@@ -1008,11 +1009,6 @@ From Days 2-4. Codespaces shut off automatically to save resources. Files persis
 Note:
 The key distinction: commit saves locally, push sends to the remote. In Codespaces, both are always needed because the Codespace is a separate machine from GitHub.
 
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Questions?
-
       </textarea>
     </section>
   </div>
@@ -1654,11 +1650,11 @@ class CliHighlight extends HTMLElement {
       const items = Object.values(tags).map(({ label, color }) =>
         `<span style="background:${color}; padding:4px 10px; border-radius:4px; font-size:0.7em;">${label}</span>`
       ).join(' ');
-      legendHtml = `<div style="margin-top:12px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
+      legendHtml = `<div style="margin-top:16px; margin-bottom:24px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
     }
 
     this.innerHTML = `
-      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0;">
+      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0 24px 0;">
         <p style="line-height:2.2 !important; margin:0;">${prefix}${html}${suffix}</p>
       </div>
       ${legendHtml}

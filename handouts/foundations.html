@@ -314,6 +314,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   flex: 1;
+  margin-bottom: 24px;
 }
 
 .column-header {
@@ -726,7 +727,7 @@ The pipeline comes from the School of Data, developed at the Open Knowledge Foun
 
 Two loops appear in practice:
 
-**Define ↔ Find**: discovering what data exists changes what questions you can answer. You may need to revise your research questions after learning what is available.
+**Define ↔ Find ↔ Get**: discovering what data exists changes what questions you can answer. Retrieval issues may send you back to Find, and what you find may change the question itself.
 
 **Verify ↔ Clean ↔ Analyse**: during cleaning you may discover quality issues that require re-verification. During analysis, something may look wrong and send you back to cleaning.
 
@@ -991,11 +992,6 @@ The fifth element, **human verification**, is how you will check the result. Des
 
 Note:
 Reference slide. The colour coding matches the cli-highlight-prompt component used throughout the course slides. Students can refer to this when structuring their own prompts.
-
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Questions?
 
       </textarea>
     </section>
@@ -1638,11 +1634,11 @@ class CliHighlight extends HTMLElement {
       const items = Object.values(tags).map(({ label, color }) =>
         `<span style="background:${color}; padding:4px 10px; border-radius:4px; font-size:0.7em;">${label}</span>`
       ).join(' ');
-      legendHtml = `<div style="margin-top:12px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
+      legendHtml = `<div style="margin-top:16px; margin-bottom:24px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
     }
 
     this.innerHTML = `
-      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0;">
+      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0 24px 0;">
         <p style="line-height:2.2 !important; margin:0;">${prefix}${html}${suffix}</p>
       </div>
       ${legendHtml}

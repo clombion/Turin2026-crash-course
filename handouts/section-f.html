@@ -314,6 +314,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   flex: 1;
+  margin-bottom: 24px;
 }
 
 .column-header {
@@ -1067,11 +1068,6 @@ For the crash course: manual refresh is fine. For a real project: deterministic 
 Note:
 Slide 112. This question came up when students imagined their dashboards as live tools. The distinction between deterministic and AI-driven automation is important: deterministic automation (cron job + script) is proven technology. AI-driven automation introduces non-deterministic behavior into production systems, which creates verification problems at scale. The OpenClaw warning is specific: it runs AI agents with full system access and no sandboxing.
 
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Questions?
-
       </textarea>
     </section>
   </div>
@@ -1713,11 +1709,11 @@ class CliHighlight extends HTMLElement {
       const items = Object.values(tags).map(({ label, color }) =>
         `<span style="background:${color}; padding:4px 10px; border-radius:4px; font-size:0.7em;">${label}</span>`
       ).join(' ');
-      legendHtml = `<div style="margin-top:12px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
+      legendHtml = `<div style="margin-top:16px; margin-bottom:24px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
     }
 
     this.innerHTML = `
-      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0;">
+      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0 24px 0;">
         <p style="line-height:2.2 !important; margin:0;">${prefix}${html}${suffix}</p>
       </div>
       ${legendHtml}

@@ -314,6 +314,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   flex: 1;
+  margin-bottom: 24px;
 }
 
 .column-header {
@@ -998,11 +999,6 @@ For your proposal: understand where you sit in the chain. The CLI RFP positions 
 Note:
 This layered funding structure is invisible to newcomers but shapes everything about how projects work. Students who understand this can write more realistic timelines and budgets. The "grants all the way down" phrase is a play on "turtles all the way down": each layer is funded by the one above it, and each adds its own overhead and constraints.
 
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Questions?
-
       </textarea>
     </section>
   </div>
@@ -1644,11 +1640,11 @@ class CliHighlight extends HTMLElement {
       const items = Object.values(tags).map(({ label, color }) =>
         `<span style="background:${color}; padding:4px 10px; border-radius:4px; font-size:0.7em;">${label}</span>`
       ).join(' ');
-      legendHtml = `<div style="margin-top:12px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
+      legendHtml = `<div style="margin-top:16px; margin-bottom:24px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
     }
 
     this.innerHTML = `
-      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0;">
+      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0 24px 0;">
         <p style="line-height:2.2 !important; margin:0;">${prefix}${html}${suffix}</p>
       </div>
       ${legendHtml}

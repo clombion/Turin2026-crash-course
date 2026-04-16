@@ -314,6 +314,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   flex: 1;
+  margin-bottom: 24px;
 }
 
 .column-header {
@@ -891,11 +892,6 @@ The prompt pattern is the same: Get the data → Verify on the map → Clean/Ana
 
 Note:
 Slide 94. This was a genuine student contribution during Lecture 4. It demonstrates two things: the pipeline pattern (same steps, new data) and the value of peer input. The suggestion was not implemented during the crash course due to time constraints, but it is a natural extension of the exercise. GeoTIFF population grids require raster processing, which is more complex than vector data, making it a good exercise for advanced students.
-
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Questions?
 
       </textarea>
     </section>
@@ -1538,11 +1534,11 @@ class CliHighlight extends HTMLElement {
       const items = Object.values(tags).map(({ label, color }) =>
         `<span style="background:${color}; padding:4px 10px; border-radius:4px; font-size:0.7em;">${label}</span>`
       ).join(' ');
-      legendHtml = `<div style="margin-top:12px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
+      legendHtml = `<div style="margin-top:16px; margin-bottom:24px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
     }
 
     this.innerHTML = `
-      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0;">
+      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0 24px 0;">
         <p style="line-height:2.2 !important; margin:0;">${prefix}${html}${suffix}</p>
       </div>
       ${legendHtml}
