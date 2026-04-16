@@ -7,64 +7,73 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
-            --panel-bg: rgba(255, 255, 255, 0.85);
-            --danger: #ff4d4d;
-            --safe: #2ecc71;
-            --flood: #3498db;
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #252542;
+            --text-primary: #f0f0f0;
+            --accent: #e6b84a;
+            --border: #3a3a5a;
         }
         
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        #map { height: 100vh; width: 100vw; background: #242424; }
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-primary); color: var(--text-primary); }
+        
+        header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            box-sizing: border-box;
+        }
 
-        /* Modern Glassmorphism UI */
+        header h1 { font-size: 1.25rem; font-weight: 600; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; }
+        header h1 svg { color: var(--accent); }
+
+        .btn {
+            background: #2d2d4a;
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .btn:hover { border-color: var(--accent); background: var(--bg-secondary); }
+
+        #map { height: calc(100vh - 64px); width: 100vw; background: #242424; }
+
+        /* Leaflet Overrides */
         .leaflet-control-layers, .legend {
-            background: var(--panel-bg) !important;
-            backdrop-filter: blur(10px);
-            border: none !important;
-            border-radius: 12px !important;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15) !important;
-            padding: 12px !important;
+            background: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 8px !important;
         }
-
-        .legend h4 { margin: 0 0 8px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #444; }
-        .legend-item { display: flex; align-items: center; margin-bottom: 5px; font-size: 13px; color: #555; }
-        .legend-color { width: 14px; height: 14px; border-radius: 50%; margin-right: 8px; border: 1px solid rgba(0,0,0,0.1); }
-
-        /* Pulsing Animation for At-Risk Sites */
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .at-risk-pulse {
-            background: var(--danger);
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 0 10px var(--danger);
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        /* Card-style Popups */
-        .leaflet-popup-content-wrapper {
-            border-radius: 12px;
-            padding: 5px;
-        }
-        .popup-card h3 { margin: 0 0 5px 0; color: #333; font-size: 16px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-        .popup-card p { margin: 4px 0; font-size: 13px; color: #666; }
-        .status-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 5px;
+        
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 12 10-10 10 10"/><path d="m7 21 0-10 10 0 0 10"/></svg>
+            Senegal Health Risk Map
+        </h1>
+        <a href="../index.html" class="btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            Return to Home
+        </a>
+    </header>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>

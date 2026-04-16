@@ -196,6 +196,47 @@
             color: #475569;
         }
 
+        /* Preview Section */
+        .preview-container {
+            margin-top: 1rem;
+            background: #1a1a2e;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #3a3a5a;
+        }
+
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #f0f0f0;
+        }
+
+        .preview-table th {
+            background: #252542;
+            text-align: left;
+            padding: 0.5rem;
+            border-bottom: 1px solid #3a3a5a;
+            color: #e6b84a;
+            white-space: nowrap;
+        }
+
+        .preview-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #2d2d4a;
+            white-space: nowrap;
+        }
+
+        .preview-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
         @media (max-width: 768px) {
             .dataset-card {
                 grid-template-columns: 1fr;
@@ -247,35 +288,71 @@
         </div>
 
         <div class="section-title">Datasets & Metadata</div>
-        <div class="dataset-grid">
-            <!-- Table Header -->
-            <div class="dataset-card" style="background: transparent; border: none; font-weight: 700; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; padding-bottom: 0;">
-                <div>Name</div>
-                <div>Source</div>
-                <div>Format</div>
-                <div>Retrieved</div>
-            </div>
+        
+        <!-- Global Archive -->
+        <div class="dataset-card">
+            <div class="dataset-name">Global Active Flood Archive</div>
+            <div class="dataset-meta">Dartmouth Flood Observatory</div>
+            <div><span class="badge">CSV / XLSX</span></div>
+            <div class="dataset-meta">Apr 2026</div>
+        </div>
+        <div class="preview-title">Data Preview (First 5 rows)</div>
+        <div class="preview-container">
+            <table class="preview-table">
+                <thead>
+                    <tr><th>ID</th><th>Country</th><th>long</th><th>lat</th><th>Began</th><th>Dead</th><th>MainCause</th><th>Severity</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Algeria</td><td>5.23026</td><td>35.8142</td><td>1985-01-01</td><td>26</td><td>Heavy rain</td><td>1.0</td></tr>
+                    <tr><td>2</td><td>Brazil</td><td>-45.3489</td><td>-18.7111</td><td>1985-01-15</td><td>229</td><td>Heavy rain</td><td>2.0</td></tr>
+                    <tr><td>3</td><td>Phillipines</td><td>122.974</td><td>10.0207</td><td>1985-01-20</td><td>43</td><td>Torrential rain</td><td>1.0</td></tr>
+                    <tr><td>4</td><td>Indonesia</td><td>124.606</td><td>1.01489</td><td>1985-02-04</td><td>21</td><td>Torrential rain</td><td>1.0</td></tr>
+                    <tr><td>5</td><td>Mozambique</td><td>32.3491</td><td>-25.8693</td><td>1985-02-09</td><td>19</td><td>Heavy rain</td><td>2.0</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="dataset-card">
-                <div class="dataset-name">Global Active Flood Archive</div>
-                <div class="dataset-meta">Dartmouth Flood Observatory</div>
-                <div><span class="badge">CSV / XLSX</span></div>
-                <div class="dataset-meta">Apr 2026</div>
-            </div>
+        <!-- Senegal Floods -->
+        <div class="dataset-card" style="margin-top: 2rem;">
+            <div class="dataset-name">Senegal Flood Events</div>
+            <div class="dataset-meta">Filtered Archive Data</div>
+            <div><span class="badge">GeoJSON / CSV</span></div>
+            <div class="dataset-meta">Apr 2026</div>
+        </div>
+        <div class="preview-title">Data Preview (First 5 rows)</div>
+        <div class="preview-container">
+            <table class="preview-table">
+                <thead>
+                    <tr><th>ID</th><th>Country</th><th>long</th><th>lat</th><th>Began</th><th>Dead</th><th>Displaced</th><th>MainCause</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1008</td><td>Senegal</td><td>-15.0548</td><td>15.8268</td><td>1995-09-24</td><td>0</td><td>0</td><td>Heavy rain</td></tr>
+                    <tr><td>1866</td><td>Senegal</td><td>-14.6405</td><td>15.5553</td><td>2002-01-09</td><td>28</td><td>80000</td><td>Heavy rain</td></tr>
+                    <tr><td>2316</td><td>Senegal</td><td>-12.9402</td><td>15.9392</td><td>2003-08-09</td><td>10</td><td>5300</td><td>Heavy rain</td></tr>
+                    <tr><td>2729</td><td>Senegal</td><td>-17.3737</td><td>14.7558</td><td>2005-08-20</td><td>0</td><td>5600</td><td>Heavy rain</td></tr>
+                    <tr><td>3180</td><td>Senegal</td><td>-13.9678</td><td>15.4745</td><td>2007-08-31</td><td>1</td><td>0</td><td>Heavy rain</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="dataset-card">
-                <div class="dataset-name">Senegal Flood Events</div>
-                <div class="dataset-meta">Filtered Archive Data</div>
-                <div><span class="badge">GeoJSON / CSV</span></div>
-                <div class="dataset-meta">Apr 2026</div>
-            </div>
-
-            <div class="dataset-card">
-                <div class="dataset-name">Senegal Health Sites</div>
-                <div class="dataset-meta">healthsites.io</div>
-                <div><span class="badge">JSON</span></div>
-                <div class="dataset-meta">Apr 2026</div>
-            </div>
+        <!-- Health Sites -->
+        <div class="dataset-card" style="margin-top: 2rem;">
+            <div class="dataset-name">Senegal Health Sites</div>
+            <div class="dataset-meta">healthsites.io</div>
+            <div><span class="badge">JSON</span></div>
+            <div class="dataset-meta">Apr 2026</div>
+        </div>
+        <div class="preview-title">Data Preview (JSON snippet)</div>
+        <div class="preview-container">
+            <pre style="color: #f0f0f0; padding: 1rem; font-size: 0.75rem;">{
+  "type": "Feature",
+  "geometry": { "type": "Point", "coordinates": [-17.47, 14.70] },
+  "properties": {
+    "name": "Pharmacie Stella",
+    "healthcare": "pharmacy",
+    "amenity": "pharmacy"
+  }
+}, ...</pre>
         </div>
     </main>
 </body>
