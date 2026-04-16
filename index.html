@@ -3,20 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bordeaux Hospital Map (Black and White)</title>
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-    <link rel="stylesheet" href="style.css">
+    <title>Global Flood Impact Analysis | Project Home</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Header */
+        header {
+            max-width: 1000px;
+            margin: 4rem auto 2rem;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* App Cards */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Dataset Table/Cards */
+        .dataset-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .dataset-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1fr;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dataset-name {
+            font-weight: 600;
+        }
+
+        .metadata-label {
+            display: none;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .dataset-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        @media (max-width: 768px) {
+            .dataset-card {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .metadata-label {
+                display: inline;
+                margin-right: 0.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="map"></div>
+    <nav>
+        <a href="#" class="nav-brand">FloodInsight</a>
+        <div class="nav-links">
+            <a href="senegal/index.html">Map</a>
+            <a href="dashboard/index.html">Charts</a>
+            <a href="visualizer/index.html">Visualizer</a>
+        </div>
+    </nav>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-    <script src="script.js"></script>
+    <header>
+        <h1>Global Flood Impact Analysis</h1>
+        <p>A comprehensive study of flood events, severity, and their impact on critical infrastructure in Senegal and across the globe.</p>
+    </header>
+
+    <main>
+        <div class="section-title">Analysis Tools</div>
+        <div class="app-grid">
+            <div class="card">
+                <h3>Interactive Map</h3>
+                <p>Explore flood zones in Senegal and identify health facilities located in at-risk areas using spatial analysis.</p>
+                <a href="senegal/index.html" class="btn">View Map</a>
+            </div>
+            <div class="card">
+                <h3>Data Dashboard</h3>
+                <p>Statistical overview of global flood trends, mortality rates, and displacement figures over time.</p>
+                <a href="dashboard/index.html" class="btn">View Charts</a>
+            </div>
+            <div class="card">
+                <h3>GeoData Visualizer</h3>
+                <p>A versatile tool to upload, parse, and visualize your own geographic CSV datasets instantly on an interactive map.</p>
+                <a href="visualizer/index.html" class="btn">Open App</a>
+            </div>
+        </div>
+
+        <div class="section-title">Datasets & Metadata</div>
+        <div class="dataset-grid">
+            <!-- Table Header -->
+            <div class="dataset-card" style="background: transparent; border: none; font-weight: 700; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; padding-bottom: 0;">
+                <div>Name</div>
+                <div>Source</div>
+                <div>Format</div>
+                <div>Retrieved</div>
+            </div>
+
+            <div class="dataset-card">
+                <div class="dataset-name">Global Active Flood Archive</div>
+                <div class="dataset-meta">Dartmouth Flood Observatory</div>
+                <div><span class="badge">CSV / XLSX</span></div>
+                <div class="dataset-meta">Apr 2026</div>
+            </div>
+
+            <div class="dataset-card">
+                <div class="dataset-name">Senegal Flood Events</div>
+                <div class="dataset-meta">Filtered Archive Data</div>
+                <div><span class="badge">GeoJSON / CSV</span></div>
+                <div class="dataset-meta">Apr 2026</div>
+            </div>
+
+            <div class="dataset-card">
+                <div class="dataset-name">Senegal Health Sites</div>
+                <div class="dataset-meta">healthsites.io</div>
+                <div><span class="badge">JSON</span></div>
+                <div class="dataset-meta">Apr 2026</div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
