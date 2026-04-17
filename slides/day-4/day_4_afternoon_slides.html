@@ -56,7 +56,7 @@
   --fs-title-slide: 36pt;
   --fs-body: 28pt;
   --fs-body-small: 22pt;
-  --fs-footer: 14pt;
+  --fs-footer: 11pt;
   --fs-code: 22pt;
 
   /* Spacing — asymmetric: more right padding for breathing room */
@@ -307,6 +307,28 @@
 }
 
 /* =========================
+   BLOCKQUOTES
+   ========================= */
+.reveal .slides section blockquote {
+  background: var(--cli-blue-pale);
+  border-left: 4px solid var(--cli-blue);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 28px;
+  margin: 24px 0;
+  font-style: italic;
+  color: var(--cli-navy);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  width: 100%;
+  box-shadow: none;
+  text-align: left;
+}
+
+.reveal .slides section blockquote p {
+  margin: 0;
+}
+
+/* =========================
    TWO-COLUMN LAYOUT
    ========================= */
 .two-column {
@@ -314,6 +336,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   flex: 1;
+  margin-bottom: 24px;
 }
 
 .column-header {
@@ -621,7 +644,7 @@
 }
 
 .global-footer .footer-logo {
-  width: 48px;
+  width: 36px;
   height: auto;
 }
 
@@ -708,23 +731,21 @@ Students are not starting from scratch. They have maps from Days 2-3. The aftern
 
 ## What to aim for
 
-By the end of this afternoon:
-
 1. **Clean your data** if you haven't already (Google Sheets, same techniques as this morning)
-2. **Build a charts page** for your data (Chart.js, card layout — same as the shared exercise)
+2. **Build a charts page** for your data (Chart.js, card layout)
 3. **Create a landing page** that connects your map and charts (use v0 or Gemini)
-4. Prepare a **story** you can tell about what the data shows
+4. Start thinking about the **story** you want to tell with the data
 
-You will present this story to peers at the end of the day.
+Tomorrow we will do peer review in groups, so prepare to present your work.
 
 Note:
-The story matters most. Even a rough charts page with a clear narrative is better than a polished page with no point.
+The story matters most. Even a rough charts page with a clear narrative is better than a polished page with no point. The peer review moves to Day 5 to give students more time to build.
 
 ---
 
 ## Exercise: build your data portal
 
-**Individual work — until peer review**
+**Individual work — rest of the afternoon**
 
 1. Clean and categorise your data if needed
 2. Ask Gemini to build a charts page for your data
@@ -734,78 +755,7 @@ The story matters most. Even a rough charts page with a clear narrative is bette
 Remember: **chatbot for thinking, CLI for building**. Use **v0** for design. Ask for **simple** outputs. Save your process as a **skill** if you do something you might repeat.
 
 Note:
-Main working block. Circulate and help. Students who already have clean data can go straight to the charts page. Students who need to clean first should prioritise that. Encourage everyone to get at least a landing page up before the peer review.
-
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Peer Review
-
-Note:
-"You've been building individually for three days. Now let's hear each other's stories."
-
----
-
-## Why peer review
-
-- You learn to **explain your work** clearly and concisely
-- You get **feedback** on whether your story makes sense to someone who hasn't been inside your project
-- You practice the kind of presentation you would give to a funder
-
-The reviewers are not judging technical quality. They are evaluating whether the **story is clear and the visuals support it**.
-
-Note:
-Frame this as practice for the real world. When you present a proposal to a funder, they have 10 minutes and no background knowledge. Can they understand your point?
-
----
-
-## The review framework
-
-When reviewing someone's presentation, consider:
-
-1. **Do the visuals communicate the point quickly?** Can you understand what the map or chart shows without a long explanation?
-
-2. **Is the angle clear?** Can you state in one sentence what this proposal is about?
-
-3. **Is the case study convincing?** Does the concrete example make the broader argument feel real and grounded?
-
-4. **Are visuals integrated into the narrative?** Or did the presenter spend too long explaining the data work instead of using it to support the argument? The goal is to project competence by being clear and grounded, not to give a tutorial on your methodology.
-
-5. **What's missing?** What would make this stronger? What question do you still have?
-
-Note:
-Project this slide during the reviews so reviewers can refer to it. Point 4 is important: a common mistake is turning a proposal presentation into an explanation of the data pipeline. The funder doesn't need a class on concepts they already know. The visuals should serve the argument, not be the argument.
-
----
-
-## How it works
-
-**Groups of 3-4 people.**
-
-Each person presents (5 minutes):
-- Show your **landing page**
-- Explain your **angle** and your **case study**
-- Walk through your **map or charts**: what does the data show?
-- What would you add if you had more time?
-
-Then: **5 minutes of feedback** from the group using the review framework.
-
-Note:
-Form groups. Mix students who worked on different regions/topics for diversity of perspective. Keep time strictly: 5 min present + 5 min feedback = 10 min per person. Groups of 3-4 means 30-40 min total.
-
----
-
-## Exercise: present and review
-
-**Groups — 40 minutes**
-
-1. Form groups of 3-4
-2. Each person presents (5 min) + receives feedback (5 min)
-3. Take notes on the feedback you receive
-4. After all presentations: 5 minutes to write down what you want to improve tomorrow
-
-Note:
-Circulate between groups. Listen for common patterns: are angles too broad? Are visuals unclear? Are case studies disconnected from the angle? These patterns inform Day 5.
+Main working block. Circulate and help. Students who already have clean data can go straight to the charts page. Students who need to clean first should prioritise that.
 
 ---
 
@@ -820,24 +770,18 @@ Bring everyone back.
 ## What we produced today
 
 **Morning:**
-- Categorised MainCause into 7 groups using FILTER and a mapping sheet
+- Categorised MainCause into 7 groups
 - Saved the map-building process as a reusable skill
 - Built a Chart.js visualisation page
 - Built a landing page connecting everything into a mini data portal
 
 **Afternoon:**
-- Applied the full pipeline to individual projects
-- Presented stories and received peer feedback
+- Continued building individual data portals
 
-**Tomorrow:** refine based on feedback, plan your project, finalise your proposal.
+**Tomorrow:** dataviz principles, peer review in groups, exam briefing, and course retrospective.
 
 Note:
-Tomorrow is the last day. Students should come ready to polish and present.
-
----
-
-<!-- .slide: class="section-slide" data-background-color="#091A31" -->
-# Questions?
+Day 5 is the last day. Students should come ready to present their work to peers.
 
       </textarea>
     </section>
@@ -1480,11 +1424,11 @@ class CliHighlight extends HTMLElement {
       const items = Object.values(tags).map(({ label, color }) =>
         `<span style="background:${color}; padding:4px 10px; border-radius:4px; font-size:0.7em;">${label}</span>`
       ).join(' ');
-      legendHtml = `<div style="margin-top:12px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
+      legendHtml = `<div style="margin-top:16px; margin-bottom:24px; display:flex; gap:24px; justify-content:center;">${items}</div>`;
     }
 
     this.innerHTML = `
-      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0;">
+      <div style="background:#f5f5f5; padding:30px 40px; border-radius:12px; font-size:0.85em; margin:20px 0 24px 0;">
         <p style="line-height:2.2 !important; margin:0;">${prefix}${html}${suffix}</p>
       </div>
       ${legendHtml}
