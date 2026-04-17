@@ -92,6 +92,30 @@ function renderSidebar() {
   }
 
   sidebar.innerHTML = html;
+
+  // Mobile: add hamburger button to header and overlay
+  const header = document.querySelector('.site-header');
+  if (header && !document.querySelector('.menu-toggle')) {
+    const btn = document.createElement('button');
+    btn.className = 'menu-toggle';
+    btn.setAttribute('aria-label', 'Toggle navigation');
+    btn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    header.insertBefore(btn, header.firstChild);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', renderSidebar);
