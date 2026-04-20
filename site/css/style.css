@@ -152,6 +152,29 @@ body {
   border-radius: 10px;
 }
 
+/* --- Sidebar exam link --- */
+.sidebar-exam {
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.sidebar-link-exam {
+  background: var(--navy);
+  color: var(--white) !important;
+  font-weight: 600;
+  font-family: var(--font-condensed);
+  letter-spacing: 0.02em;
+}
+.sidebar-link-exam .icon { color: var(--blue-light); }
+.sidebar-link-exam:hover {
+  background: #0e2444 !important;
+  color: var(--white) !important;
+}
+.sidebar-link-exam.active {
+  background: var(--blue) !important;
+  color: var(--white) !important;
+}
+
 /* --- Main content --- */
 .main {
   margin-left: var(--sidebar-width);

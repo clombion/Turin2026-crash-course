@@ -3,6 +3,7 @@
    ================================================ */
 
 const SIDEBAR_DATA = {
+  topLink: { href: 'exam.html', icon: 'fa-solid fa-pen-to-square fa-xs', label: 'Exam' },
   sections: [
     {
       title: 'Self-Paced Review',
@@ -32,7 +33,6 @@ const SIDEBAR_DATA = {
       links: [
         { href: 'resources.html', icon: 'fa-solid fa-folder-open fa-xs', label: 'Resources' },
         { href: '../demos/index.html', icon: 'fa-solid fa-globe fa-xs', label: 'Demos', badge: 'live', rootHref: 'demos/index.html' },
-        { href: 'exam.html', icon: 'fa-solid fa-pen-to-square fa-xs', label: 'Exam' },
       ]
     }
   ]
@@ -51,6 +51,26 @@ function renderSidebar() {
   const currentPage = path.split('/').pop() || 'index.html';
 
   let html = '';
+
+  // Render top-level Exam link
+  if (SIDEBAR_DATA.topLink) {
+    const link = SIDEBAR_DATA.topLink;
+    let href;
+    if (isRoot && link.rootHref) {
+      href = link.rootHref;
+    } else if (isRoot && !link.href.startsWith('../')) {
+      href = prefix + link.href;
+    } else {
+      href = link.href;
+    }
+    const linkFile = link.href.split('/').pop();
+    const isActive = currentPage === linkFile;
+    const activeClass = isActive ? ' active' : '';
+    const iconHtml = link.icon ? `<i class="${link.icon}"></i>` : '';
+    html += `<div class="sidebar-section sidebar-exam">`;
+    html += `<a href="${href}" class="sidebar-link sidebar-link-exam${activeClass}"><span class="icon">${iconHtml}</span> ${link.label}</a>`;
+    html += `</div>`;
+  }
 
   for (const section of SIDEBAR_DATA.sections) {
     html += `<div class="sidebar-section">`;
