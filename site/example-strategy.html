@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example Strategy Section — Crash Course</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .annotated-section {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .annotation {
+      padding: 16px 20px 16px 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--gray-500);
+      position: relative;
+      align-self: start;
+      position: sticky;
+      top: 20px;
+    }
+
+    .annotation::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: -1px;
+      width: 16px;
+      height: calc(100% - 40px);
+      border: 2px solid var(--blue);
+      border-left: none;
+      border-radius: 0 6px 6px 0;
+      opacity: 0.4;
+    }
+
+    .annotation strong {
+      display: block;
+      font-family: var(--font-condensed);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .proposal-content {
+      padding: 20px 0 20px 32px;
+      border-left: 1px solid var(--gray-200);
+    }
+
+    .proposal-content h2 {
+      font-family: var(--font-condensed);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 0 0 16px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--blue);
+      display: inline-block;
+    }
+
+    .proposal-content p {
+      margin: 12px 0;
+      line-height: 1.8;
+      color: var(--gray-700);
+    }
+
+    .proposal-content ol, .proposal-content ul {
+      margin: 12px 0;
+      padding-left: 24px;
+      color: var(--gray-700);
+    }
+
+    .proposal-content li {
+      margin: 8px 0;
+      line-height: 1.7;
+    }
+
+    .proposal-content strong {
+      color: var(--navy);
+    }
+
+    .proposal-content a {
+      color: var(--blue);
+    }
+
+    .proposal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    .proposal-content th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 10px 16px;
+      text-align: left;
+      font-family: var(--font-condensed);
+      font-weight: 600;
+    }
+
+    .proposal-content td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .proposal-content tr:nth-child(even) {
+      background: var(--gray-50);
+    }
+
+    .proposal-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+
+    .proposal-meta {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .intro-box {
+      background: var(--blue-pale);
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin-bottom: 40px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-600);
+    }
+
+    .activity-block {
+      margin: 16px 0;
+      padding: 16px 20px;
+      background: var(--gray-50);
+      border-radius: 8px;
+    }
+
+    .activity-block strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .case-study-ref {
+      background: var(--blue-pale);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    .case-study-ref a {
+      font-weight: 600;
+    }
+
+    /* Responsive: annotations collapse inline on small screens */
+    @media (max-width: 900px) {
+      .annotated-section {
+        grid-template-columns: 1fr;
+      }
+      .annotation {
+        padding: 16px 20px;
+        background: var(--gray-50);
+        border-radius: 8px;
+        border-left: 3px solid var(--blue);
+        margin-bottom: 8px;
+        position: static;
+      }
+      .annotation::after {
+        display: none;
+      }
+      .proposal-content {
+        padding: 0;
+        border-left: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../index.html" class="logo">ICT for Civic Data <span>— Crash Course 2026</span></a>
+  <div class="header-right">
+    <a href="../index.html">Home</a>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar"></aside>
+
+<main class="main">
+  <div class="section-page">
+    <div class="section-label">Reference</div>
+    <h1>Example Strategy Section</h1>
+
+    <div class="intro-box">
+      This is an example strategy section responding to the crash course practice RFP (<em>"Strengthening Community-Level Disaster Preparedness in Climate-Vulnerable Regions"</em>). The left column annotates the proposal, explaining why each section works. The right column is the proposal itself — written at the level of specificity and data grounding expected in the exam.
+    </div>
+
+    <!-- Title block -->
+    <div style="padding-left: 272px; margin-bottom: 40px;">
+      <div class="proposal-title">Using Data to Assess Health Infrastructure Vulnerability in Climate-Affected Regions</div>
+      <div class="proposal-meta">Response to CLI RFP: Strengthening Community-Level Disaster Preparedness</div>
+    </div>
+
+    <!-- 1. Context -->
+    <div class="annotated-section">
+      <div class="annotation">
+        <strong>Why this works</strong>
+        Names the gap (informal knowledge, no systematic tools) without diminishing the funder's expertise — "deep knowledge" comes first. The case study appears in one paragraph: it justifies the angle by showing health facility vulnerability is a real, measurable problem relevant to the RFP. The last sentence pivots from the specific case to the broader proposition.
+      </div>
+      <div class="proposal-content">
+        <h2>1. Context</h2>
+        <p>CLI's field staff have deep knowledge of which communities are most vulnerable to climate-related disasters. However, this knowledge exists informally — in field reports, conversations, and institutional memory. There is currently no systematic way to identify which health facilities sit within flood-prone areas, or how the accessibility of those facilities changes during a disaster event.</p>
+        <p>This gap matters because health facilities are strategic points in disaster preparedness: they are where affected populations go first, they need to remain operational during emergencies, and their staff need to be prepared before a flood season begins. Knowing which facilities are at risk — before a disaster strikes — transforms preparedness from reactive to anticipatory.</p>
+        <div class="case-study-ref">
+          A preliminary analysis in Senegal confirms this is a real and measurable problem. Cross-referencing 8 recorded flood events with 1,861 health facility locations identified 9 facilities within 1 kilometre of a flood zone (<a href="../demos/senegal/index.html">view the map</a>). These are clinics and dispensaries serving populations that lose access to care precisely when they need it most. Open geospatial data makes this kind of assessment possible for any region where CLI operates, at no cost and with no licensing constraints.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Objectives -->
+    <div class="annotated-section">
+      <div class="annotation">
+        <strong>Why this works</strong>
+        Three objectives, each concrete. The first is strategic (develop a monitoring strategy), not technical. The second is a deliverable (build tools), but the specific focus is left to CLI — health facilities are offered as an example, not imposed. The third addresses the RFP's "adaptability" criterion. Notice they describe what CLI gains, not what the proposer does.
+      </div>
+      <div class="proposal-content">
+        <h2>2. Objectives</h2>
+        <ol>
+          <li><strong>Develop a data-driven monitoring strategy</strong> for CLI's disaster preparedness work, identifying which infrastructure and communities to prioritise and how open data can complement field staff knowledge on an ongoing basis.</li>
+          <li><strong>Build monitoring tools</strong> — interactive maps that field staff can use to identify at-risk infrastructure before, during, and after disaster events, starting with a pilot on a priority identified with CLI (e.g. health facilities, schools, shelters).</li>
+          <li><strong>Document the approach as a reusable process</strong> that CLI can apply to new regions and new types of infrastructure, building internal capacity for data-driven preparedness.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 3. Approach -->
+    <div class="annotated-section">
+      <div class="annotation">
+        <strong>Why this works</strong>
+        Opens by explaining <em>why</em> monitoring is the right focus for an organisation at CLI's stage — high impact, cross-cutting, and a foundation for future work. This shows strategic thinking about the client's trajectory, not just technical capability. Health facilities are an example, not the scope. AI appears where the RFP asks for it: as what makes the approach scalable. The reliability concern is addressed directly — AI does mechanical work, humans make decisions.
+      </div>
+      <div class="proposal-content">
+        <h2>3. Approach</h2>
+        <p>For an organisation transitioning to data-driven workflows, the priority is to focus on areas that produce high impact across multiple use cases while being easy to build upon as data maturity progresses. <strong>Monitoring</strong> — systematically tracking which infrastructure and communities are exposed to climate hazards — meets both criteria: it directly supports preparedness planning, emergency response, and resource allocation, and it establishes a data foundation that CLI can extend over time.</p>
+        <p>Health facilities illustrate why this matters and what the project would deliver. A facility that floods every rainy season is a preparedness problem that field staff may already know about — but currently have no way to flag systematically, compare across regions, or communicate to decision-makers. By overlaying disaster history with facility locations, we make that knowledge visible and actionable (<a href="../demos/senegal/index.html">see the Senegal pilot</a>).</p>
+        <p>The same approach applies to any infrastructure CLI needs to monitor: schools, water points, shelters, access roads. For each target region, the risk threshold is calibrated with field staff, accounting for local topography and flood behaviour. Where the data and field knowledge disagree, we investigate together — sometimes the data reveals a risk that was not on the radar; sometimes field staff know something the data cannot capture.</p>
+        <p>AI tools make this scalable. Extracting infrastructure data from OpenStreetMap, computing proximity across thousands of facilities, and generating interactive maps are tasks that would take weeks manually but can be completed in hours with AI-assisted scripting. Critically, AI handles the mechanical work — querying APIs, writing code, building interfaces — while analytical decisions (which infrastructure to prioritise, what risk thresholds to use, how to interpret results) remain with CLI staff and the project team. This separation ensures reliability: every script is version-controlled and every result is verifiable.</p>
+        <p>The tools are designed for non-technical users and run entirely in a web browser — no software installation, no server infrastructure.</p>
+      </div>
+    </div>
+
+    <!-- 4. Proposed Activities -->
+    <div class="annotated-section">
+      <div class="annotation">
+        <strong>Why this works</strong>
+        Three activities, each with a clear output. They follow a logical sequence (assess, build, document) without specifying timelines or team composition — those belong in the logistical section, not the strategy. Activity 1 explicitly involves field staff in validation. Activity 3 ensures the organisation can continue without the proposer.
+      </div>
+      <div class="proposal-content">
+        <h2>4. Proposed Activities</h2>
+        <div class="activity-block">
+          <strong>Activity 1: Regional risk assessment pilot</strong>
+          Apply the methodology to a priority region selected with CLI field staff. Retrieve disaster history and health facility locations from open sources. Verify data quality by mapping it and cross-checking with field knowledge. Classify facilities by risk level. Validate the results with field teams: where the data and field knowledge disagree, investigate and document the reason.
+        </div>
+        <div class="activity-block">
+          <strong>Activity 2: Interactive monitoring tools</strong>
+          Build interactive maps for each assessed region, published as static web pages (no server infrastructure required). Field staff can toggle layers, click on facilities for details, and identify which facilities need attention before the disaster season. The tools are designed for non-technical users.
+        </div>
+        <div class="activity-block">
+          <strong>Activity 3: Methodology documentation and capacity building</strong>
+          Document the full process as a reusable guide: data sources, scripts, quality checks, and decision logic. Deliver training for CLI staff covering how to update the data, rerun the analysis for new regions, and adapt the approach to other infrastructure types.
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Deliverables -->
+    <div class="annotated-section">
+      <div class="annotation">
+        <strong>Why this works</strong>
+        The deliverables are tangible — files, a working tool, documentation, a training session. The final line is the "show don't tell" moment: the map already exists. A reviewer can click the link and see exactly what the project would produce. This is the strongest possible proof of feasibility.
+      </div>
+      <div class="proposal-content">
+        <h2>5. Deliverables</h2>
+        <table>
+          <thead>
+            <tr><th>Deliverable</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Risk-classified datasets</strong></td><td>For each assessed region: facility data tagged by risk status and distance to nearest disaster event</td></tr>
+            <tr><td><strong>Interactive monitoring maps</strong></td><td>Web-based maps with toggleable layers, published on GitHub Pages</td></tr>
+            <tr><td><strong>Methodology guide</strong></td><td>Step-by-step documentation enabling CLI to reproduce and extend the analysis</td></tr>
+            <tr><td><strong>Training session</strong></td><td>For CLI staff on using and updating the tools</td></tr>
+          </tbody>
+        </table>
+        <div class="case-study-ref">
+          The Senegal pilot demonstrates the format and quality of these deliverables: the interactive map is operational and can be viewed at the project's GitHub Pages site.
+        </div>
+      </div>
+    </div>
+
+    <nav class="page-nav">
+      <a href="resources.html">
+        <span>←</span>
+        <div>
+          <div class="nav-label">Back to</div>
+          <div class="nav-title">Resources</div>
+        </div>
+      </a>
+      <a href="exam.html">
+        <div style="text-align:right;">
+          <div class="nav-label">See also</div>
+          <div class="nav-title">Exam</div>
+        </div>
+        <span>→</span>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<script src="js/sidebar.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
