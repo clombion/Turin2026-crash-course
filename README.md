@@ -1,5 +1,5 @@
-# crash-course-1
-Test repo for first day of crash course in Turin
+# Turin 2026 Crash Course
 
-Little modification
-Second modifictaion
+Course materials for the 2026 Turin University Crash Course "ICT for Civic Data", part of the Master programme "ICT for Development and Social Good".
+
+**Website:** https://clombion.github.io/Turin2026-crash-course/
