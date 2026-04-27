@@ -778,6 +778,71 @@ Circulate between groups. Listen for common patterns: are angles too broad? Are 
 ---
 
 <!-- .slide: class="section-slide" data-background-color="#091A31" -->
+# Tools for Polish
+
+Note:
+"A few tools and techniques that came up this week and are worth knowing about."
+
+---
+
+## Map embedding patterns
+
+When embedding a map into a landing page, two approaches:
+
+1. **Interactive embed** — place the map code in the same repository, but simplified: deactivate some layers, lock the zoom to a specific region so the embed is not too busy
+2. **Screenshot teaser** — a static image linking to the full interactive map
+
+Best pattern: a **minified map** showing one region, with a "View the full map →" button. Simple interaction, clear invitation to explore more.
+
+Note:
+This came up in student Q&A. The key insight is that an embedded map should not show everything — it should show one thing well and invite the viewer to see more. Lock the zoom, reduce the layers, make it a focused preview.
+
+---
+
+## Progressive disclosure
+
+Instead of showing all your data at once, use a **button that tells a story**:
+
+- Click once: see flood zones
+- Click again: see health facilities in those zones
+- Click again: see which facilities are at highest risk
+
+The interaction is very simple — one button — but you can show **several layers of your story** through progressive clicks.
+
+This works for maps, dashboards, and any visual with multiple dimensions.
+
+Note:
+From student work. A student built a button that progressively revealed data layers. The pattern is powerful because it controls the viewer's attention and builds a narrative through interaction rather than requiring them to parse a complex visual all at once.
+
+---
+
+## Notebook LM for visual inspiration
+
+[Notebook LM](https://notebooklm.google.com/) generates visuals from your own documents. The AI **never goes to the internet** — it works purely on what you upload, so it will not hallucinate facts.
+
+**Workflow:** upload your documents → generate a PPTX → hand it to Gemini to create simplified versions for specific slides.
+
+**Use it for inspiration, not final output.** The generated visuals often look overcomplicated or too "AI", but they give you ideas for what could be visualised with simple lines and shapes.
+
+Note:
+Demo'd in class. The generated slides had titles like "The Civic Data Blueprint" — visually engaging but overcomplicated. The value is in seeing what the AI highlights as visual concepts, then rebuilding those concepts simply. Also mention Google Recorder for free local transcription on Android.
+
+---
+
+## Technical tips
+
+**Codespaces are ephemeral.** As long as you push everything to your repository, you can delete a Codespace and recreate it later. Unlike a local setup, nothing persists when the Codespace is deleted.
+
+**Homebrew for Mac.** The most widely used package manager for terminal applications on Mac and Linux. `brew install claude-code` works.
+
+**Branching for collaboration.** If you work with someone on the same repository, work on **separate branches** and merge afterwards. Working on the same branch on the same files will cause conflicts.
+
+Note:
+Quick reference. Students setting up local environments after the course will need Homebrew. Branching advice matters for the exam if students collaborate informally, and for future projects.
+
+---
+
+<!-- .slide: class="section-slide" data-background-color="#091A31" -->
 # Exam Briefing
 
 Note:
@@ -791,14 +856,30 @@ Respond to an RFP by building a **visual artifact** that demonstrates genuine da
 
 You will produce:
 
-- A **case study** anchored in a specific territory and issue
-- An **angle** that connects the case study to a broader argument
-- A **visual artifact** (map, dashboard, data portal) published on GitHub Pages
-- A **story** that uses the data to support a convincing proposal
-- A **documented process** showing how you found, cleaned, and analysed the data
+- A **visual artifact** (map, dashboard, chart) published on GitHub Pages — this supports a specific argument
+- The **data** behind the artifact, visible in your GitHub repository
+- The **strategy section** of a proposal — context, objectives, approach, proposed activities, deliverables — using a template provided with the exam
+
+The exam tests **logic and methodology**, not memory.
 
 Note:
-The exam RFP will be shared separately. The format is the same as what students practiced during the crash course, but with a new RFP on a different topic.
+Three deliverables. The artifact is the centrepiece — a couple of visuals or a map that supports a specific argument. Not a landing page. The data should be in the repo so quality can be inspected. The strategy section closes the loop from data to story.
+
+---
+
+## What the exam is not
+
+You do **not** need:
+
+- A **logistical section** — no timeline, team composition, or activity sequencing
+- A **financial proposal** — no budget
+- Step-by-step documentation of your process — but data quality will be inspected
+- A full landing page or completed project — a proposal demonstrates capacity, it is not a finished product
+
+A **proposal template** will be provided with the exam.
+
+Note:
+Explicit scoping. The exam covers only the strategy section (context, objectives, approach, activities, deliverables), not the logistical or financial parts. Students who try to build a complete project site may actually miss the point. The exam is about the strategic story: can you tell a convincing, data-grounded argument through the different blocks of a proposal, rather than just filling them in an isolated manner?
 
 ---
 
@@ -811,8 +892,8 @@ The exam RFP will be shared separately. The format is the same as what students 
 - Specific angle, grounded in a case study
 - Data that supports the argument (show, don't tell)
 - Clean, well-labelled visuals with storytelling titles
-- Documented sources and methodology
-- Clear story: a funder could understand it in 5 minutes
+- A clear story told **through** the proposal blocks
+- A funder could understand it in 5 minutes
 
 </div>
 <div class="column">
@@ -821,14 +902,14 @@ The exam RFP will be shared separately. The format is the same as what students 
 - Vague angle trying to cover everything
 - Describes a data approach without demonstrating it
 - Complex visuals that require explanation
-- No documentation of where data came from
-- Technical showcase with no proposal narrative
+- Fills proposal blocks in isolation, no connecting narrative
+- Technical showcase with no proposal story
 
 </div>
 </div>
 
 Note:
-Connect back to Day 1: the "show don't tell" insight. The strongest submission demonstrates capacity by actually doing the analysis, not just describing how it would be done. The weakest is a technical portfolio with no connection to the funder's problem.
+The qualitative difference: someone who has a clear story to tell and tells it through the different blocks of the proposal, versus someone who just fills the blocks in an isolated manner. Connect back to Day 1: the "show don't tell" insight.
 
 ---
 
@@ -843,7 +924,7 @@ The issue is whether you can demonstrate **human-led reasoning**:
 - Did you make analytical choices you can explain and defend?
 - Does your git history show a progression of decisions, not a single AI dump?
 
-Your **artifact chain** (scripts, commits, sources.md) is your proof of original work.
+Your **artifact chain** (scripts, commits, data files) is your proof of original work.
 
 Note:
 From the Day 4 discussion. AI plagiarism detectors are unreliable. The best defense against accusations of academic dishonesty is a documented process: git history with meaningful commits, scripts with comments, methodology notes. The same artifacts that make research reproducible also prove it's yours.
@@ -852,9 +933,10 @@ From the Day 4 discussion. AI plagiarism detectors are unreliable. The best defe
 
 ## Timeline
 
-- **Exam RFP**: will be shared separately
-- **Deadline**: two weeks from today
+- **Exam RFP + template**: shared Monday
+- **Deadline**: May 5 at midnight
 - **Submission**: link to your GitHub Pages site + repository
+- **Grades**: by May 15
 
 Questions about the format?
 
@@ -900,7 +982,20 @@ Discussion:
 - What **surprised you** about working with AI tools?
 
 Note:
-Open discussion. Give students time to reflect. Common themes from previous cohorts: the gap between what AI can do and what you should trust it to do; the importance of looking at data yourself; the power of having something published and shareable.
+Open discussion. Give students time to reflect. Common themes from previous cohorts: the gap between what AI can do and what you should trust it to do; the importance of looking at data yourself; the power of having something published and shareable. Eighty percent of data work is cleaning — if your data is always clean, it's probably not the data with the most value from a social change perspective.
+
+---
+
+## Teaching a moving target
+
+The framework — communicating with data — is stable. It is not specific to AI. It comes from a decade of mentoring data projects and proposals.
+
+What changes every year: the **tools and their capabilities**. Next year the tools will be different, and so will how we teach them. Open source models may reduce reliance on frontier providers.
+
+The AI onboarding friction is real: so many new concepts just to get to a point where the tool works. **If it was painful for you while being guided, imagine learning alone.** You have a head start — leverage it.
+
+Note:
+Honest reflection. The struggle students felt is normal. The tools are not user-friendly yet, and the methodology matters more than any specific tool. Students who pushed through the learning curve are ahead of most of their peers.
 
 ---
 

@@ -1031,6 +1031,43 @@ From Days 2-4. Codespaces shut off automatically to save resources. Files persis
 Note:
 The key distinction: commit saves locally, push sends to the remote. In Codespaces, both are always needed because the Codespace is a separate machine from GitHub.
 
+---
+
+## How do we collaborate on the same repository?
+
+Work on **separate branches** and merge afterwards. If two people edit the same file on the same branch, git cannot automatically reconcile the changes and you will get a merge conflict.
+
+Tell the agent: "I want to work on a branch called `my-feature` and I will merge it into main afterwards."
+
+Practical tips:
+
+- **Separate files, separate folders** — even on the same branch, this reduces conflicts
+- **Push often** — small, frequent pushes are easier to merge than large, infrequent ones
+- **Merge early** — the longer branches diverge, the harder the merge
+
+For the crash course, most work is individual. For future projects, branching becomes essential.
+
+Note:
+From Day 5 Q&A. Students asked about working together on the same repository. The key insight: branching is not a git concept to memorise, it is a collaboration tool. If you tell the agent to work on a branch, the agent handles the git mechanics. You just need to know when to merge.
+
+---
+
+## What is the gh-pages branch?
+
+Some AI agents automatically create a `gh-pages` branch when publishing to GitHub Pages. This is a legacy convention: GitHub Pages originally required a special branch.
+
+**Modern setup:** GitHub Pages can serve from **any branch**. The default recommendation is to serve from `main`, which is simpler.
+
+If the agent publishes to `gh-pages` instead of `main`:
+
+- **Option 1:** Tell the agent "publish on the main branch, not gh-pages"
+- **Option 2:** Go to Settings → Pages and change the source branch to `gh-pages`
+
+Both work. The important thing is that your source branch in Settings → Pages matches where the agent puts the files.
+
+Note:
+From Day 5. This confused several students whose sites were blank because the agent pushed to gh-pages while Pages was configured to serve from main. Either changing the agent's behaviour or changing the setting fixes it.
+
       </textarea>
     </section>
   </div>

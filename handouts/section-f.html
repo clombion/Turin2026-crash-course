@@ -787,6 +787,23 @@ Slide 97. This distinction is critical for the crash course. Students build both
 
 ---
 
+## Chart titles tell the story
+
+A chart title should state the **finding**, not the topic. The title is the first thing someone reads. If it states the finding, the chart becomes self-explanatory.
+
+| Weak title | Strong title |
+|---|---|
+| "Flood events by year" | "Flood events have doubled since 2000" |
+| "Health facility map" | "Health facilities cluster in urban areas" |
+| "Wildfires by region" | "Rural wildfires outnumber urban ones 3 to 1" |
+
+A funder scanning your proposal will read the titles first. If the titles alone tell the story, the charts serve the argument even before the viewer reads the axes.
+
+Note:
+Slide 97b. From Day 5. This is the single most impactful improvement students can make to their visuals. When a title says "Data by category", the funder has to figure out the point themselves, and they won't. When the title says "Category X dominates at 60%", the chart reinforces the argument.
+
+---
+
 ## Data Visualisation Catalogue
 
 [datavizcatalogue.com](https://datavizcatalogue.com/) organises chart types by function: comparison, distribution, composition, relationship, hierarchy, flow.
@@ -1021,6 +1038,70 @@ Slide 109. From Lectures 4-5: the artifact chain. The metaphor of "little stones
 
 <!-- .slide: class="section-slide" data-background-color="#091A31" -->
 # FAQ
+
+---
+
+## How do I embed a map into a landing page?
+
+Two approaches:
+
+<div class="two-column">
+<div class="column">
+<div class="column-header">Interactive embed</div>
+
+Place the map code in the same repository. Simplify it for the embed: **deactivate some layers** and **lock the zoom** to a specific region so the view is focused, not busy.
+
+Add a "View the full map →" button linking to the full interactive version.
+
+</div>
+<div class="column">
+<div class="column-header">Screenshot teaser</div>
+
+Take a screenshot of the map at a meaningful zoom level. Use it as a static image on the landing page, linking to the full map.
+
+Simpler to implement, but loses interactivity.
+
+</div>
+</div>
+
+Best pattern: a **minified map** showing one focused region, with an invitation to explore the full version. The embed should show one thing well, not everything at once.
+
+Note:
+Slide 109b. From Day 5. Students whose landing pages showed a full global map found it too busy at small sizes. Locking the zoom and reducing layers creates a focused preview that communicates one point clearly. The "view full map" button invites deeper exploration.
+
+---
+
+## How does progressive disclosure work?
+
+Instead of showing all your data at once, use a **button that tells a story** through progressive clicks:
+
+- Click once: see flood zones
+- Click again: see health facilities in those zones
+- Click again: see which facilities are at highest risk
+
+The interaction is very simple — one button — but you can show **several layers of your story** through successive clicks. Each click adds context without overwhelming the viewer upfront.
+
+This works for maps, dashboards, and any visual with multiple dimensions. It controls the viewer's attention and builds a narrative through interaction.
+
+Note:
+Slide 109c. From a student's work on Day 5. The pattern is powerful because it replaces complex multi-layer visuals with a guided narrative experience. Instead of the viewer parsing a dense map, they follow a story: problem → context → severity. The same principle applies to charts with toggle buttons that reveal additional series.
+
+---
+
+## How can I use Notebook LM for visual ideas?
+
+[Notebook LM](https://notebooklm.google.com/) generates visuals from your own documents. Its key advantage: the AI **never goes to the internet** — it works purely on what you upload, so it will not hallucinate facts that are not in your data.
+
+**Workflow:**
+
+1. Upload your documents (transcripts, data descriptions, proposal drafts)
+2. Generate a PPTX presentation
+3. Hand the PPTX to Gemini to create **simplified versions** for specific slides
+
+**Use it for inspiration, not final output.** The generated visuals often look overcomplicated or too "AI", but they give you ideas for what could be visualised with simple lines and shapes. Treat them as sketches, not deliverables.
+
+Note:
+Slide 109d. From Day 5. Demo'd in class with crash course transcripts. The generated slides had engaging titles but overcomplicated layouts. The value is in seeing what the AI highlights as visual concepts, then rebuilding those concepts simply. Also mentioned: Google Recorder (free Android app) for local transcription without internet.
 
 ---
 
